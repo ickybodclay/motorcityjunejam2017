@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour {
     public float repathRate = 0.5f;
     private float lastRepath = -9999;
 
-    private bool m_FacingRight = true;
+    public bool m_FacingRight = true;
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
