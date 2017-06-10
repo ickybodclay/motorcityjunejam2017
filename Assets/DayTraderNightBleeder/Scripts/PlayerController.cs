@@ -10,11 +10,17 @@ public class PlayerController : MonoBehaviour {
 
     public bool lockMovement = false;
 
-	void Start () {
+	private void Start () {
         motor = GetComponent<PlayerMotor>();		
 	}
-	
-	void FixedUpdate () {
+
+    private void Update() {
+        if (CrossPlatformInputManager.GetButtonDown("Punch")) {
+            motor.Punch();
+        }
+    }
+
+    private void FixedUpdate () {
         float h = 0f;
         float v = 0f;
         if (!lockMovement) {

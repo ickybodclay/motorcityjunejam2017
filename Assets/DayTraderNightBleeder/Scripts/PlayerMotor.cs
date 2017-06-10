@@ -5,13 +5,17 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour {
 
     private Rigidbody2D rigidbody2d;
+    private AudioSource audioSource;
 
     [SerializeField] private float m_MaxSpeedX = 10f;
     [SerializeField] private float m_MaxSpeedY = 6f;
     private bool m_FacingRight = true;
 
+    private List<GameObject> punchableEnemies = new List<GameObject>();
+
     private void Start() {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Move(float moveX, float moveY) {
@@ -31,5 +35,31 @@ public class PlayerMotor : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void Punch() {
+        if (punchableEnemies.Count == 0) {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.Play();
+        }
+
+        foreach(GameObject victim in punchableEnemies) {
+            Debug.Log(victim.name + " got punched!");
+            victim.GetComponent<Enemy>().TakeDamage();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Enemy") {
+            Debug.Log("Enemy in range");
+            punchableEnemies.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.tag == "Enemy") {
+            Debug.Log("Enemy out of range");
+            punchableEnemies.Remove(other.gameObject);
+        }
     }
 }
