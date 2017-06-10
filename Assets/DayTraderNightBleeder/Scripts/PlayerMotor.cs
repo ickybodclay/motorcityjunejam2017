@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour {
 
-    private Rigidbody2D rigidbody2d;
+    private Rigidbody2D rb2d;
     private AudioSource audioSource;
 
     [SerializeField] private AudioClip punchSfx;
@@ -18,12 +18,12 @@ public class PlayerMotor : MonoBehaviour {
     private List<GameObject> punchableEnemies = new List<GameObject>();
 
     private void Start() {
-        rigidbody2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
     }
 
     public void Move(float moveX, float moveY) {
-        rigidbody2d.velocity = new Vector2(moveX * m_MaxSpeedX, moveY * m_MaxSpeedY);
+        rb2d.velocity = new Vector2(moveX * m_MaxSpeedX, moveY * m_MaxSpeedY);
 
         if (moveX > 0 && !m_FacingRight) {
             Flip();
