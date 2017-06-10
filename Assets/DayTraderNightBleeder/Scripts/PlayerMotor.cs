@@ -26,6 +26,7 @@ public class PlayerMotor : MonoBehaviour {
 
     public void Move(float moveX, float moveY) {
         rb2d.velocity = new Vector2(moveX * m_MaxSpeedX, moveY * m_MaxSpeedY);
+        animator.SetFloat("Speed", rb2d.velocity.magnitude);
 
         if (moveX > 0 && !m_FacingRight) {
             Flip();

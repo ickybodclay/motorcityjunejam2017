@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     private AudioSource audioSource;
     private Animator animator;
     private Rigidbody2D rb2d;
+    private SpriteRenderer spriteRenderer;
     private Seeker seeker;
 
     public Transform targetPosition;
@@ -26,14 +27,31 @@ public class Enemy : MonoBehaviour {
 
     public bool m_FacingRight = true;
 
+    private int health = 3;
+
     private void Start() {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
     }
 
     private void Update() {
+        if (isDying) {
+            Color tmp = spriteRenderer.color;
+            tmp.a = Mathf.PingPong(Time.time * 10f, 1f);
+            spriteRenderer.color = tmp;
+
+            return;
+        }
+
+        if (isInvulnerable) {
+            Color tmp = spriteRenderer.color;
+            tmp.a = Mathf.PingPong(Time.time * 3f, 1f);
+            spriteRenderer.color = tmp;
+        }
+
         if (Time.time - lastRepath > repathRate && seeker.IsDone()) {
             lastRepath = Time.time + Random.value * repathRate * 0.5f;
             // Start a new path to the targetPosition, call the the OnPathComplete function
@@ -76,14 +94,53 @@ public class Enemy : MonoBehaviour {
     public void Move(Vector3 dir) {
         dir.z = 0;
         rb2d.velocity = dir;
+        //animator.SetFloat("Speed", rb2d.velocity.magnitude);
     }
 
     private float hitForce = 150f;
+    private bool isInvulnerable = false;
     public void TakeDamage() {
+        if (isInvulnerable) return;
+
         //Debug.Log(name + " hit!");
         Vector3 dir = transform.position - targetPosition.position;
         dir = dir.normalized * hitForce;
         rb2d.AddForce(dir, ForceMode2D.Impulse);
+        health--;
+
+        if (health <= 0) {
+            Die();
+        }
+        else {
+            StartCoroutine(Invulnerable());
+        }
+    }
+
+    private IEnumerator Invulnerable() {
+        isInvulnerable = true;
+
+        yield return new WaitForSeconds(.5f);
+
+        Color tmp = spriteRenderer.color;
+        tmp.a = 1f;
+        spriteRenderer.color = tmp;
+        isInvulnerable = false;
+    }
+
+    private bool isDying = false;
+    private void Die() {
+        if (isDying) return;
+
+        isDying = true;
+
+        StartCoroutine(_Die());
+    }
+
+    private IEnumerator _Die() {
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
     }
 
     public void OnPathComplete(Path p) {
