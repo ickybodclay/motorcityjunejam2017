@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour {
     public float repathRate = 0.5f;
     private float lastRepath = -9999;
 
-	private void Start () {
+    private bool m_FacingRight = true;
+
+    private void Start () {
         audioSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
@@ -37,6 +39,15 @@ public class Enemy : MonoBehaviour {
             // Start a new path to the targetPosition, call the the OnPathComplete function
             // when the path has been calculated (which may take a few frames depending on the complexity)
             seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+
+            float deltaX = transform.position.x - targetPosition.position.x;
+
+            if (deltaX < 0 && !m_FacingRight) {
+                Flip();
+            }
+            else if (deltaX > 0 && m_FacingRight) {
+                Flip();
+            }
         }
         if (path == null)
         {
@@ -65,8 +76,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void Move(Vector3 dir)
-    {
+    public void Move(Vector3 dir) {
         dir.z = 0;
         rb2d.velocity = dir;
     }
@@ -83,5 +93,13 @@ public class Enemy : MonoBehaviour {
             // Reset the waypoint counter so that we start to move towards the first point in the path
             currentWaypoint = 0;
         }
+    }
+
+    private void Flip() {
+        m_FacingRight = !m_FacingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
