@@ -10,17 +10,27 @@ public class PlayerController : MonoBehaviour {
 
     public bool lockMovement = false;
 
-	private void Start () {
-        motor = GetComponent<PlayerMotor>();		
-	}
+    private void Start() {
+        motor = GetComponent<PlayerMotor>();
+    }
 
     private void Update() {
+        lockMovement = GameManager.Instance.IsDialogShowing();
+        if (GameManager.Instance.IsDialogShowing()) {
+            return;
+        }
+
         if (CrossPlatformInputManager.GetButtonDown("Punch")) {
             motor.Punch();
         }
+
+        // FIXME for testing only
+        if (CrossPlatformInputManager.GetButtonDown("Interact")) {
+            GameManager.Instance.ShowDialog("hello world", "nice day for a punch isn't it?", "*PUNCH*");
+        }
     }
 
-    private void FixedUpdate () {
+    private void FixedUpdate() {
         float h = 0f;
         float v = 0f;
         if (!lockMovement) {

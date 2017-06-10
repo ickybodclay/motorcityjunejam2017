@@ -25,16 +25,14 @@ public class Enemy : MonoBehaviour {
 
     private bool m_FacingRight = true;
 
-    private void Start () {
+    private void Start() {
         audioSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
     }
 
-    private void Update()
-    {
-        if (Time.time - lastRepath > repathRate && seeker.IsDone())
-        {
+    private void Update() {
+        if (Time.time - lastRepath > repathRate && seeker.IsDone()) {
             lastRepath = Time.time + Random.value * repathRate * 0.5f;
             // Start a new path to the targetPosition, call the the OnPathComplete function
             // when the path has been calculated (which may take a few frames depending on the complexity)
@@ -49,14 +47,12 @@ public class Enemy : MonoBehaviour {
                 Flip();
             }
         }
-        if (path == null)
-        {
+        if (path == null) {
             // We have no path to follow yet, so don't do anything
             return;
         }
         if (currentWaypoint > path.vectorPath.Count) return;
-        if (currentWaypoint == path.vectorPath.Count)
-        {
+        if (currentWaypoint == path.vectorPath.Count) {
             Debug.Log("End Of Path Reached");
             currentWaypoint++;
             return;
@@ -69,8 +65,7 @@ public class Enemy : MonoBehaviour {
         // The commented line is equivalent to the one below, but the one that is used
         // is slightly faster since it does not have to calculate a square root
         //if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
-        if ((transform.position - path.vectorPath[currentWaypoint]).sqrMagnitude < nextWaypointDistance * nextWaypointDistance)
-        {
+        if ((transform.position - path.vectorPath[currentWaypoint]).sqrMagnitude < nextWaypointDistance * nextWaypointDistance) {
             currentWaypoint++;
             return;
         }
@@ -91,8 +86,7 @@ public class Enemy : MonoBehaviour {
 
     public void OnPathComplete(Path p) {
         Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
-        if (!p.error)
-        {
+        if (!p.error) {
             path = p;
             // Reset the waypoint counter so that we start to move towards the first point in the path
             currentWaypoint = 0;

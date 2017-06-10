@@ -55,7 +55,7 @@ public class PlayerMotor : MonoBehaviour {
             audioSource.Play();
         }
 
-        foreach(GameObject victim in punchableEnemies) {
+        foreach (GameObject victim in punchableEnemies) {
             victim.GetComponent<Enemy>().TakeDamage();
         }
 

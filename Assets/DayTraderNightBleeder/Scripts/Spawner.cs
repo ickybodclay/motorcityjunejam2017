@@ -11,13 +11,13 @@ public class Spawner : MonoBehaviour {
     private bool isActivated = false;
     private int spawnedCount;
 
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+    void Start() {
+
+    }
+
+    void Update() {
+
+    }
 
     public void Activate() {
         if (isActivated) return;
@@ -36,8 +36,7 @@ public class Spawner : MonoBehaviour {
         enemy.GetComponent<Enemy>().targetPosition = GameManager.Instance.Player.transform;
         spawnedCount++;
 
-        if (spawnedCount < spawnCount)
-        {
+        if (spawnedCount < spawnCount) {
             yield return new WaitForSeconds(spawnFrequency);
 
             StartCoroutine(Spawn());
