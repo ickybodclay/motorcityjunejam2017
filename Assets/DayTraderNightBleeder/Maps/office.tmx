@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="8" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="10" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="offie-space-tileset" tilewidth="16" tileheight="16" tilecount="360" columns="30">
   <image source="offie-space-tileset.png" width="480" height="192"/>
  </tileset>
- <layer name="Background" width="32" height="8">
+ <tileset firstgid="361" name="floor office carpet" tilewidth="16" tileheight="16" tilecount="4" columns="2">
+  <image source="floor office carpet.png" width="40" height="40"/>
+ </tileset>
+ <layer name="Background" width="32" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DgADMQMyJhNiBmRxPDh0lRj66WCYgVgVgeCasAsSqaGD5Minp0tQpAbA/EtkjYCYid0cTwYVLUo6u1A2IAZQMMDQ==
+   eJztzDEKwkAUhOGNgoIpjF3EgBEMmMLYRRRUUNAisYvoFXL/C/gXWyzL9Gm2+GB4zLyxMSYSJph6txlim+dIsBDbFVIsnT+Z6I2wwVrYovBuO5Q271HhILYn1Dg6f86il+OGi3DHw7s98bK5QYu32H7R4eP8+YneFX0UBMFQ/imSapg=
   </data>
  </layer>
- <layer name="Objects" width="32" height="8">
+ <layer name="Objects" width="32" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BwAi4g5iZRTzwV7dcAYk0grgLiaiCuAeJKAnpq0dRb4FBXT4I7ZgDxTCCeBcTTCaidjaY+DIe6uVAaAGMjCxA=
+   eJxjYBgeoAqIq4G4ZoDsnwHEM4F41gDZPwpGwSggHQAAuFQDPQ==
   </data>
  </layer>
 </map>
