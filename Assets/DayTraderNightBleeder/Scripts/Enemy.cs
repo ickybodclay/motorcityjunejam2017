@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     private AudioSource audioSource;
+    private Animator animator;
     private Rigidbody2D rb2d;
     private Seeker seeker;
 
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour {
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
     }
@@ -53,7 +55,7 @@ public class Enemy : MonoBehaviour {
         }
         if (currentWaypoint > path.vectorPath.Count) return;
         if (currentWaypoint == path.vectorPath.Count) {
-            Debug.Log("End Of Path Reached");
+            //Debug.Log("End Of Path Reached");
             currentWaypoint++;
             return;
         }
@@ -85,7 +87,7 @@ public class Enemy : MonoBehaviour {
     }
 
     public void OnPathComplete(Path p) {
-        Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+        //Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
         if (!p.error) {
             path = p;
             // Reset the waypoint counter so that we start to move towards the first point in the path
@@ -99,5 +101,15 @@ public class Enemy : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player") {
+            Attack();
+        }
+    }
+
+    private void Attack() {
+        animator.SetTrigger("Punch");
     }
 }
