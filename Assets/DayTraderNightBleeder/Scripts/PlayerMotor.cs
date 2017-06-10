@@ -6,6 +6,7 @@ public class PlayerMotor : MonoBehaviour {
 
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
+    private Animator animator;
 
     [SerializeField] private AudioClip punchSfx;
     [SerializeField] private AudioClip hitSfx;
@@ -20,6 +21,7 @@ public class PlayerMotor : MonoBehaviour {
     private void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     public void Move(float moveX, float moveY) {
@@ -56,6 +58,8 @@ public class PlayerMotor : MonoBehaviour {
         foreach(GameObject victim in punchableEnemies) {
             victim.GetComponent<Enemy>().TakeDamage();
         }
+
+        animator.SetTrigger("Punch");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

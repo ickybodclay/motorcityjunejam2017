@@ -81,8 +81,12 @@ public class Enemy : MonoBehaviour {
         rb2d.velocity = dir;
     }
 
+    private float hitForce = 150f;
     public void TakeDamage() {
-        Debug.Log(name + " hit!");
+        //Debug.Log(name + " hit!");
+        Vector3 dir = transform.position - targetPosition.position;
+        dir = dir.normalized * hitForce;
+        rb2d.AddForce(dir, ForceMode2D.Impulse);
     }
 
     public void OnPathComplete(Path p) {
