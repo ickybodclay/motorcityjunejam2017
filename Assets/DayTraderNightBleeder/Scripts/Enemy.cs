@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour {
 	}
 
     public void TakeDamage() {
-        audioSource.pitch = Random.Range(0.95f, 1.05f);
-        audioSource.Play();
+        Debug.Log(name + " hit!");
     }
 }

@@ -7,6 +7,10 @@ public class PlayerMotor : MonoBehaviour {
     private Rigidbody2D rigidbody2d;
     private AudioSource audioSource;
 
+    [SerializeField] private AudioClip punchSfx;
+    [SerializeField] private AudioClip hitSfx;
+    [SerializeField] private AudioClip hurtSfx;
+
     [SerializeField] private float m_MaxSpeedX = 10f;
     [SerializeField] private float m_MaxSpeedY = 6f;
     private bool m_FacingRight = true;
@@ -40,25 +44,30 @@ public class PlayerMotor : MonoBehaviour {
     public void Punch() {
         if (punchableEnemies.Count == 0) {
             audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.clip = punchSfx;
+            audioSource.Play();
+        }
+        else {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.clip = hitSfx;
             audioSource.Play();
         }
 
         foreach(GameObject victim in punchableEnemies) {
-            Debug.Log(victim.name + " got punched!");
             victim.GetComponent<Enemy>().TakeDamage();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {
-            Debug.Log("Enemy in range");
+            //Debug.Log("Enemy in range");
             punchableEnemies.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Enemy") {
-            Debug.Log("Enemy out of range");
+            //Debug.Log("Enemy out of range");
             punchableEnemies.Remove(other.gameObject);
         }
     }

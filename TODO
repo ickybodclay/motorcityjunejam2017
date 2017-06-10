@@ -16,3 +16,13 @@ Jason Tasks
   - add take Damage
   - add ability to punch
   - add punching to AI
+
+
+
+Notes:
+In Turtles in Time, if you are surrounded by enemies, and are spamming attack,
+will auto flip to other side once enemy defeated on current facing side.
+
+Sprint?
+Grapple?
+Slide?
