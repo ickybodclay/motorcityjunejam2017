@@ -8,11 +8,13 @@ My entry for the inaugural Motor City June Jam (https://itch.io/jam/motor-city-j
   * Idle
   * Walk
   * Punch
+  * Take damage
 
 * Generic businessman enemy
   * Idle
   * Walk
   * Punch
+  * Take damage
 
 * Your Boss, the Final Boss
   * ???
@@ -26,6 +28,9 @@ My entry for the inaugural Motor City June Jam (https://itch.io/jam/motor-city-j
 ### SFX
 * Punch
 * Take Damage
+* Jump
+* Walk sfx
+* Enemy dying sfx
 
 ### Music
 * Main game loop

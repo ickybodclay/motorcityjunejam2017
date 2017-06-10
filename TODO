@@ -1,0 +1,18 @@
+Jason Tasks
+
+* add player
+  - add beat'em up style movement
+  - add punch
+  - add ability to take damage
+
+* Camera scrolling
+  - Add script to lock camera to largest min x
+  - Add toggles to switch to lock camera to largest min y (for elevator shaft level)
+  - Add "wall" on locked part of screen
+  - Add toggle to change "wall" to killzone
+
+* add enemy
+  - add simple follow AI
+  - add take Damage
+  - add ability to punch
+  - add punching to AI
