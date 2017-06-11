@@ -134,6 +134,7 @@ public class Enemy : MonoBehaviour {
         if (isDying) return;
 
         isDying = true;
+        GameManager.Instance.EnemyCount -= 1;
 
         StartCoroutine(_Die());
     }

@@ -7,8 +7,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    //private GameObject m_Canvas;
     public GameObject Player { get; private set; }
+    public int EnemyCount { get; set; }
 
     [SerializeField] private GameObject dialogUi;
     [SerializeField] private Text dialogText;
@@ -54,8 +54,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void InitGame() {
-        //m_Canvas = GameObject.Find("Canvas");
-        Player = GameObject.Find("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update() {

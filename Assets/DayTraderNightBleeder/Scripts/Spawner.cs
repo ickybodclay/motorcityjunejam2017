@@ -11,18 +11,11 @@ public class Spawner : MonoBehaviour {
     private bool isActivated = false;
     private int spawnedCount;
 
-    void Start() {
-
-    }
-
-    void Update() {
-
-    }
-
     public void Activate() {
         if (isActivated) return;
 
         isActivated = true;
+        GameManager.Instance.EnemyCount += spawnCount;
 
         StartCoroutine(Spawn());
     }
