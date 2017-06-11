@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour {
     public void Move(Vector3 dir) {
         dir.z = 0;
         rb2d.velocity = dir;
-        //animator.SetFloat("Speed", rb2d.velocity.magnitude);
+        animator.SetFloat("Speed", rb2d.velocity.magnitude);
     }
 
     private float hitForce = 150f;
