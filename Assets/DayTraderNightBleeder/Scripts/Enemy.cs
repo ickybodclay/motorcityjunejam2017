@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour {
 
     public bool m_FacingRight = true;
 
+    public AudioClip takeDamageSfx;
+    public AudioClip dieSfx;
+
     private int health = 3;
 
     private void Start() {
@@ -46,12 +49,6 @@ public class Enemy : MonoBehaviour {
             spriteRenderer.color = tmp;
 
             return;
-        }
-
-        if (isInvulnerable) {
-            Color tmp = spriteRenderer.color;
-            tmp.a = Mathf.PingPong(Time.time * 3f, 1f);
-            spriteRenderer.color = tmp;
         }
 
         if (Time.time - lastRepath > repathRate && seeker.IsDone()) {
@@ -94,16 +91,16 @@ public class Enemy : MonoBehaviour {
     }
 
     public void Move(Vector3 dir) {
+        if (isStunned) return;
+
         dir.z = 0;
         rb2d.velocity = dir;
         animator.SetFloat("Speed", rb2d.velocity.magnitude);
     }
 
     private float hitForce = 150f;
-    private bool isInvulnerable = false;
+    private bool isStunned = false;
     public void TakeDamage() {
-        if (isInvulnerable) return;
-
         //Debug.Log(name + " hit!");
         Vector3 dir = transform.position - targetPosition.position;
         dir = dir.normalized * hitForce;
@@ -114,19 +111,20 @@ public class Enemy : MonoBehaviour {
             Die();
         }
         else {
-            StartCoroutine(Invulnerable());
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.clip = takeDamageSfx;
+            audioSource.Play();
+
+            StartCoroutine(Stun());
         }
     }
 
-    private IEnumerator Invulnerable() {
-        isInvulnerable = true;
+    private IEnumerator Stun() {
+        isStunned = true;
 
         yield return new WaitForSeconds(.5f);
 
-        Color tmp = spriteRenderer.color;
-        tmp.a = 1f;
-        spriteRenderer.color = tmp;
-        isInvulnerable = false;
+        isStunned = false;
     }
 
     private bool isDying = false;
@@ -170,6 +168,8 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Attack() {
+        if (isStunned) return;
+
         animator.SetTrigger("Punch");
     }
 }

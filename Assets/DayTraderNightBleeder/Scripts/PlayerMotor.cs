@@ -9,12 +9,13 @@ public class PlayerMotor : MonoBehaviour {
     private Animator animator;
 
     [SerializeField] private AudioClip punchSfx;
-    [SerializeField] private AudioClip hitSfx;
-    [SerializeField] private AudioClip hurtSfx;
+    [SerializeField] private AudioClip takeDamageSfx;
+    [SerializeField] private AudioClip dieSfx;
 
     [SerializeField] private float m_MaxSpeedX = 10f;
     [SerializeField] private float m_MaxSpeedY = 6f;
     private bool m_FacingRight = true;
+    private int health = 3;
 
     private List<GameObject> punchableEnemies = new List<GameObject>();
 
@@ -45,16 +46,9 @@ public class PlayerMotor : MonoBehaviour {
     }
 
     public void Punch() {
-        if (punchableEnemies.Count == 0) {
-            audioSource.pitch = Random.Range(0.95f, 1.05f);
-            audioSource.clip = punchSfx;
-            audioSource.Play();
-        }
-        else {
-            audioSource.pitch = Random.Range(0.95f, 1.05f);
-            audioSource.clip = hitSfx;
-            audioSource.Play();
-        }
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.clip = punchSfx;
+        audioSource.Play();
 
         foreach (GameObject victim in punchableEnemies) {
             victim.GetComponent<Enemy>().TakeDamage();
@@ -63,16 +57,33 @@ public class PlayerMotor : MonoBehaviour {
         animator.SetTrigger("Punch");
     }
 
+    public void TakeDamage() {
+        health--;
+
+        if (health <= 0) {
+            Die();
+        }
+        else {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.clip = takeDamageSfx;
+            audioSource.Play();
+        }
+    }
+
+    public void Die() {
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.clip = punchSfx;
+        audioSource.Play();
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {
-            //Debug.Log("Enemy in range");
             punchableEnemies.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Enemy") {
-            //Debug.Log("Enemy out of range");
             punchableEnemies.Remove(other.gameObject);
         }
     }
