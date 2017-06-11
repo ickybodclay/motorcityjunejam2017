@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
 
     public Transform targetPosition;
 
+    //[SerializeField] private AudioClip hitSfx;
+
     // The calculated path
     public Path path;
     // The AI's speed in meters per second
