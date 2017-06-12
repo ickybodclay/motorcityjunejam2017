@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="32" height="10" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="160" height="10" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="offie-space-tileset" tilewidth="16" tileheight="16" tilecount="360" columns="30">
   <image source="offie-space-tileset.png" width="480" height="192"/>
  </tileset>
  <tileset firstgid="361" name="officeTileSheetCustom" tilewidth="16" tileheight="16" tilecount="48" columns="16">
   <image source="officeTileSheetCustom.png" width="256" height="48"/>
  </tileset>
- <layer name="Background" width="32" height="10">
+ <layer name="Background" width="160" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjZmBgYMSC2YCYHU2MC4i5oWx+IBYAYkEseqWBWAKIJZHMkcGijgmIFYFYHgtWAWJVNDENINaEsnWBWA+I9bHotQRiMyA2RzLHCos6BSC2B2JbLNgJiJ3RxNyA2B3K9gZiHyD2xaI3HIhDgDgUyZwILOrsgLgQGBBFjANHNwJx0wDSo/4f9f9A+h8AyOt4CA==
+   eJzt1UlKxUAQgOEEwXncKVFEcB53GhURnMedRj2C08Jp4bRQVx5IPYh6EPUC/osKFG3eSxby0tBZfNSrpFLVSUO/Ks/zfLzgFW+SmzpRjwbJW9CKNnQZtQHa0YFq1MjzvqpNm2f2LEXX6fXFc7P0CsrMbUQTmkvUBAk9fPX+taiTaxd+wdTDd+nGOz7wKblpFoMYknwM45iQe7p2GpOYQi/6MKP6ZJ2XdL1cnV5fPDetVyjrDYVZO4wRjCbM1M/qHqF6/34MSH38zS+NPbgyctvv/2c+z3eZwxe+8SO56QArWJV8E1vYlnu6dg872MUCFrGv+mSdl3Q9a108N61XJOuNhFm7hnVsJMzUz+oekapdwrL8fvILpjOcF7Ei8bnwxwMei1iRmPde28iGc8GVmPde28iGc8GVeIRDR+IxTnCaUmfDueBKvMG1I/EWd7hPqbPhXHAl5v1fZyMbzgVXYt57baNf92K+Qw==
   </data>
  </layer>
- <layer name="Objects" width="32" height="10">
+ <layer name="Objects" width="160" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgeoAqIq4G4ZoDsnwHEM4F41gDZPwpGwSggHQAAuFQDPQ==
+   eJztzk0KgkAYh3HrAuYJ6gLqPrALqPt2nqM0OkZfelf/QQsZAmdAR4TnB89mmHnfCYJlbH6Faqcix/fV5D+a33bpD6zM3eHuVdWqsbx/VHsVq0Slg3PT5c/8m8Pfxmb5cvC8b+06y3uteqqXelu+OatM5apQ5eDc9DDmf/d9LPeMzfLp5HkfAAAAAAAA0ANebBMg
   </data>
  </layer>
 </map>

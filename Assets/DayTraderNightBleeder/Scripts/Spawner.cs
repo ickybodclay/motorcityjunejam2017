@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour {
     private int spawnedCount;
 
     public void Activate() {
-        if (isActivated) return;
+        if (isActivated || spawnCount == 0) return;
 
         isActivated = true;
         GameManager.Instance.EnemyCount += spawnCount;

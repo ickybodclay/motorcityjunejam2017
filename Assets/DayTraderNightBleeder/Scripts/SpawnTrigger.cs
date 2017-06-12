@@ -13,7 +13,7 @@ public class SpawnTrigger : MonoBehaviour {
             foreach (Spawner spawner in spawners) {
                 spawner.Activate();
             }
-            Destroy(gameObject);
+            Destroy(gameObject, 2f);
         }
     }
 }

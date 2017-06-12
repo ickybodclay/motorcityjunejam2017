@@ -14,12 +14,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Text dialogText;
     [SerializeField] public float dialogTypeSpeed = 0.01f;
 
+    [SerializeField] private GameObject gameOverUi;
+
     private int currentLine = 0;
     private int endAtLine = 0;
     private string[] lines;
 
     private bool isTyping;
     private bool cancelTyping;
+
+    private bool isGameOver = false;
 
     void Awake() {
         if (Instance == null) {
@@ -55,6 +59,17 @@ public class GameManager : MonoBehaviour {
 
     private void InitGame() {
         Player = GameObject.FindGameObjectWithTag("Player");
+        Player.GetComponent<PlayerMotor>().ResetPlayer();
+
+        if (dialogUi == null) {
+            dialogUi = GameObject.Find("DialogPanel");
+            dialogText = GameObject.Find("DialogText").GetComponent<Text>();
+            CloseDialog();
+        }
+
+        if (gameOverUi == null) {
+            gameOverUi = GameObject.Find("GameOverPanel");
+        }
     }
 
     private void Update() {
@@ -74,6 +89,22 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+
+        if (isGameOver) {
+            if (CrossPlatformInputManager.GetButtonDown("Submit")) {
+                ResetGame();
+            }
+        }
+    }
+
+    private void ResetGame() {
+        isGameOver = false;
+        isTyping = false;
+        cancelTyping = false;
+        dialogUi = null;
+        dialogText = null;
+        EnemyCount = 0;
+        SceneManager.LoadScene("Game");
     }
 
     public void ShowDialog(params string[] lines) {
@@ -109,5 +140,13 @@ public class GameManager : MonoBehaviour {
 
     public bool IsDialogShowing() {
         return dialogUi.activeSelf;
+    }
+
+    public void ShowGameOver() {
+        CloseDialog();
+
+        gameOverUi.SetActive(true);
+
+        isGameOver = true;
     }
 }

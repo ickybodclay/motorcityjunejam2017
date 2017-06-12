@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         // FIXME for testing only
-        if (CrossPlatformInputManager.GetButtonDown("Interact")) {
-            GameManager.Instance.ShowDialog("hello world", "nice day for a punch isn't it?", "*PUNCH*");
-        }
+        //if (CrossPlatformInputManager.GetButtonDown("Interact")) {
+        //    GameManager.Instance.ShowDialog("hello world", "nice day for a punch isn't it?", "*PUNCH*");
+        //}
     }
 
     private void FixedUpdate() {

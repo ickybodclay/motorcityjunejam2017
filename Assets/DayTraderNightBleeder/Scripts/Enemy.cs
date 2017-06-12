@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour {
 
     public Transform targetPosition;
 
-    //[SerializeField] private AudioClip hitSfx;
-
     // The calculated path
     public Path path;
     // The AI's speed in meters per second
@@ -32,7 +30,10 @@ public class Enemy : MonoBehaviour {
     public AudioClip takeDamageSfx;
     public AudioClip dieSfx;
 
-    private int health = 3;
+    public float attackCooldown = 1f;
+    public int maxHealth = 3;
+
+    private int health;
 
     private void Start() {
         audioSource = GetComponent<AudioSource>();
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
+        health = maxHealth;
     }
 
     private void Update() {
@@ -101,6 +103,8 @@ public class Enemy : MonoBehaviour {
     private float hitForce = 150f;
     private bool isStunned = false;
     public void TakeDamage() {
+        if (isStunned) return;
+
         //Debug.Log(name + " hit!");
         Vector3 dir = transform.position - targetPosition.position;
         dir = dir.normalized * hitForce;
@@ -108,6 +112,10 @@ public class Enemy : MonoBehaviour {
         health--;
 
         if (health <= 0) {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.clip = dieSfx;
+            audioSource.Play();
+
             Die();
         }
         else {
@@ -161,15 +169,30 @@ public class Enemy : MonoBehaviour {
         transform.localScale = theScale;
     }
 
+    private float attackDelayTime = 0f;
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            Attack();
+            attackDelayTime = 0f;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.tag == "Player") {
+            if (attackDelayTime > attackCooldown) {
+                Attack();
+                attackDelayTime = 0f;
+            }
+            else {
+                attackDelayTime += Time.deltaTime;
+            }   
         }
     }
 
     private void Attack() {
-        if (isStunned) return;
+        if (isStunned || isDying) return;
 
         animator.SetTrigger("Punch");
+
+        GameManager.Instance.Player.GetComponent<PlayerMotor>().TakeDamage();
     }
 }
