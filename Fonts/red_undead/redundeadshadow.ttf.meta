@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1008c40dbe4414dd0a8341f84d9a6c8a
+timeCreated: 1497227463
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Red Undead Shadow
+  fontNames:
+  - Red Undead Shadow
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

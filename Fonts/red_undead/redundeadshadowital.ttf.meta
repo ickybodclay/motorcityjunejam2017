@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3ae43e66a25cc48c88c246f948183655
+timeCreated: 1497227463
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Red Undead Shadow Italic
+  fontNames:
+  - Red Undead Shadow Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

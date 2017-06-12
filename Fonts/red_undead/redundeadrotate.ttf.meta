@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ec94191c0e68e4d4d8203c0e5ac63e38
+timeCreated: 1497227463
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Red Undead Rotated
+  fontNames:
+  - Red Undead Rotated
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

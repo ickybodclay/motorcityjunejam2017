@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 31643f33ff56948f19bfb5a6fa5384f5
+timeCreated: 1497227463
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Red Undead Shift
+  fontNames:
+  - Red Undead Shift
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
