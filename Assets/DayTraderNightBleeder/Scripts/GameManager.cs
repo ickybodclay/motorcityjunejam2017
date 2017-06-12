@@ -92,7 +92,8 @@ public class GameManager : MonoBehaviour {
 
         if (isGameOver) {
             if (CrossPlatformInputManager.GetButtonDown("Submit")) {
-                ResetGame();
+                //ResetGame(); FIXME broken, temporarily disabled
+                Application.Quit();
             }
         }
     }
@@ -148,5 +149,9 @@ public class GameManager : MonoBehaviour {
         gameOverUi.SetActive(true);
 
         isGameOver = true;
+    }
+
+    public void ShowWinScreen() {
+        SceneManager.LoadScene(5);
     }
 }

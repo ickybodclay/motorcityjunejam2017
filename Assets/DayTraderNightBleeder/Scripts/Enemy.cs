@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour {
     public float attackCooldown = 1f;
     public int maxHealth = 3;
 
+    public bool isBoss = false;
+
     private int health;
 
     private void Start() {
@@ -149,6 +151,9 @@ public class Enemy : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
 
+        if (isBoss) {
+            GameManager.Instance.ShowWinScreen();
+        }
         Destroy(gameObject);
     }
 

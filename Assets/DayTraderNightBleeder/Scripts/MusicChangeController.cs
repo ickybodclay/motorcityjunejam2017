@@ -13,8 +13,11 @@ public class MusicChangeController : MonoBehaviour {
         if (audioSource == null) throw new MissingComponentException("Main camera missing Audio Source component");
     }
 
+    private bool isActivated = false;
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.tag == "Player" && !isActivated) {
+            isActivated = true;
+
             audioSource.Stop();
             audioSource.clip = bossMusic;
             audioSource.Play();
