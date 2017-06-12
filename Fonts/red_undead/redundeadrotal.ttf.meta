@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 73c86fadbc4f947dc979780a4eea8602
+timeCreated: 1497227463
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Red Undead Rotalic
+  fontNames:
+  - Red Undead Rotalic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
